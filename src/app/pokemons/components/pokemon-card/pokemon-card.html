@@ -1,0 +1,17 @@
+<div class="bg-blue-500/20 h-48 w-full rounded-2xl shadow-lg flex flex-col p-4 items-center
+  justify-center cursor-pointer transition-all duration-300 hover:scale-105 hover:shadow-xl hover:bg-blue-500/30"
+  [routerLink]="['/pokemon',pokemon().id]">
+
+  <div class="text-center">
+    <h2 class="text-base sm:text-lg font-semibold capitalize text-gray-400">
+      {{ pokemon().id }} - {{ pokemon().name }}
+    </h2>
+  </div>
+
+  <img
+    src="{{ pokemonImage() }}"
+    alt="Pokemon"
+    class="w-24 h-24 object-contain mt-3 drop-shadow-md"
+  >
+
+</div>

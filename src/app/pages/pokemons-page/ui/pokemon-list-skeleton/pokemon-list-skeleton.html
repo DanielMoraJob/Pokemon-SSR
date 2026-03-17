@@ -1,0 +1,20 @@
+<div class="w-full px-2 sm:px-4">
+
+  <div class="grid gap-3 sm:gap-4 md:gap-5 lg:gap-6
+              grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5">
+
+    @for (item of '1234567891'.split(''); track $index) {
+      <div class="w-full h-48 rounded-2xl bg-blue-500/10 flex flex-col items-center justify-center p-4">
+
+        <!-- imagen skeleton -->
+        <div class="w-20 h-20 rounded-full bg-gray-300 animate-pulse mb-3"></div>
+
+        <!-- nombre skeleton -->
+        <div class="h-4 w-20 bg-gray-300 rounded animate-pulse"></div>
+
+      </div>
+    }
+
+  </div>
+
+</div>

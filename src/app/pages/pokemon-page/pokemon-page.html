@@ -1,0 +1,148 @@
+<div class="w-full max-w-4xl mx-auto px-4 py-6">
+
+  <!-- Regresar -->
+   <!-- botón volver -->
+  <button
+    (click)="goBack()"
+    class="flex items-center gap-2 text-gray-600 hover:text-indigo-600 mb-4 transition">
+
+    <!-- icono -->
+    <svg xmlns="http://www.w3.org/2000/svg"
+         class="w-5 h-5"
+         fill="none"
+         viewBox="0 0 24 24"
+         stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M15 19l-7-7 7-7" />
+      </svg>
+
+      <span class="text-sm font-medium">Volver</span>
+  </button>
+
+  <!-- loading -->
+  @if (isLoading()) {
+    <div class="flex flex-col items-center animate-pulse">
+
+      <div class="w-40 h-40 bg-gray-300 rounded-full mb-4"></div>
+      <div class="h-6 w-40 bg-gray-300 rounded mb-2"></div>
+      <div class="h-4 w-24 bg-gray-300 rounded"></div>
+
+    </div>
+  }
+
+  <!-- contenido -->
+  @else {
+
+    <div class="bg-gradient-to-br from-slate-50 to-slate-100 shadow-xl rounded-3xl p-6 md:p-8">
+
+      <!-- header -->
+      <div class="flex flex-col md:flex-row items-center md:items-start gap-6">
+
+        <!-- imagen -->
+        <img
+          [src]="image()"
+          [alt]="pokemon()?.name"
+          class="w-40 h-40 object-contain drop-shadow-lg"
+        />
+
+        <!-- info principal -->
+        <div class="text-center md:text-left">
+
+          <h1 class="text-3xl md:text-4xl font-bold capitalize text-gray-800">
+            {{ pokemon()?.name }}
+          </h1>
+
+          <span class="text-gray-400 text-lg">
+            #{{ pokemon()?.id }}
+          </span>
+
+          <!-- tipos -->
+          <div class="flex gap-2 mt-3 justify-center md:justify-start flex-wrap">
+            @for (type of pokemon()?.types ?? []; track $index) {
+              <span class="px-3 py-1 rounded-full text-sm font-medium bg-indigo-100 text-indigo-700">
+                {{ type.type.name }}
+              </span>
+            }
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- divider -->
+      <div class="border-t my-6"></div>
+
+      <!-- info básica -->
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
+
+        <div class="bg-white rounded-xl p-3 shadow-sm">
+          <p class="text-sm text-gray-500">Altura</p>
+          <p class="font-semibold text-gray-800">
+            {{ (pokemon()?.height ?? 0) / 10 }} m
+          </p>
+        </div>
+
+        <div class="bg-white rounded-xl p-3 shadow-sm">
+          <p class="text-sm text-gray-500">Peso</p>
+          <p class="font-semibold text-gray-800">
+            {{ (pokemon()?.weight ?? 0) / 10 }} kg
+          </p>
+        </div>
+
+        <div class="bg-white rounded-xl p-3 shadow-sm">
+          <p class="text-sm text-gray-500">Experiencia</p>
+          <p class="font-semibold text-gray-800">
+            {{ pokemon()?.base_experience }} XP
+          </p>
+        </div>
+
+        <div class="bg-white rounded-xl p-3 shadow-sm">
+          <p class="text-sm text-gray-500">Orden</p>
+          <p class="font-semibold text-gray-800">
+            #{{ pokemon()?.order }}
+          </p>
+        </div>
+
+      </div>
+
+      <!-- stats -->
+      <div class="mt-8">
+
+        <h2 class="text-xl font-semibold mb-4 text-gray-700">
+          Estadísticas
+        </h2>
+
+        <div class="space-y-3">
+
+          @for (stat of pokemon()?.stats ?? []; track $index) {
+
+            <div>
+
+              <div class="flex justify-between text-sm mb-1 text-gray-600">
+                <span class="capitalize">
+                  {{ stat.stat.name }}
+                </span>
+                <span>{{ stat.base_stat }}</span>
+              </div>
+
+              <!-- barra -->
+              <div class="w-full bg-gray-200 rounded-full h-2">
+                <div
+                  class="bg-indigo-500 h-2 rounded-full transition-all"
+                  [style.width.%]="stat.base_stat > 100 ? 100 : stat.base_stat">
+                </div>
+              </div>
+
+            </div>
+
+          }
+
+        </div>
+
+      </div>
+
+    </div>
+
+  }
+
+</div>
