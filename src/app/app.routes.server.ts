@@ -7,7 +7,7 @@ export const serverRoutes: ServerRoute[] = [
   },
   {
     path: 'pokemon/:id',
-    renderMode: RenderMode.Server 
+    renderMode: RenderMode.Server
   },
   {
     path: 'about',
@@ -20,5 +20,9 @@ export const serverRoutes: ServerRoute[] = [
   {
     path: 'contact',
     renderMode: RenderMode.Prerender
+  },
+  {
+    path: '**',
+    renderMode: RenderMode.Server
   }
 ];
